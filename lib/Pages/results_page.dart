@@ -21,7 +21,7 @@ class resultsPage extends StatelessWidget {
                 padding: EdgeInsets.all(15.0),
                 alignment: Alignment.bottomLeft,
                 child: const Text(
-                  "Seu resultado",
+                  "Resultado",
                   style: boldTextStyle,
                 ),
               ),
