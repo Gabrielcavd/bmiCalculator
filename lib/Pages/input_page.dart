@@ -1,9 +1,10 @@
+import 'package:bmi_calculator/Components/calculator_brain.dart';
 import 'package:bmi_calculator/Components/constants.dart';
 import 'package:bmi_calculator/Components/icon_text.dart';
-import 'package:bmi_calculator/Components/roundIconButton.dart';
+import 'package:bmi_calculator/Components/roundIcon_button.dart';
 import 'package:bmi_calculator/Pages/results_page.dart';
 import 'package:flutter/material.dart';
-import '../Components/bottomButton.dart';
+import '../Components/bottom_button.dart';
 import '../Components/content_tile.dart';
 
 enum Gender { male, female, none }
@@ -25,7 +26,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CALCULADORA IMC"),
+        title: const Text("CALCULADORA IMC"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,7 +45,9 @@ class _InputPageState extends State<InputPage> {
                         ? activeContentTileColor
                         : inactiveContentTileColor,
                     widgetChild: const iconText(
-                        widgetIcon: Icons.female, widgetText: "Mulher"),
+                      widgetIcon: Icons.female,
+                      widgetText: "Mulher",
+                    ),
                   ),
                 ),
                 Expanded(
@@ -210,10 +213,16 @@ class _InputPageState extends State<InputPage> {
           bottomButton(
             widgetText: "Calcular",
             onTap: () => () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: altura, weight: peso);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return resultsPage();
+                  return resultsPage(
+                    bmi: calc.getBMI().toStringAsFixed(1),
+                    resultado: calc.getResult(),
+                    imagem: calc.getImage(calc.getBMI()),
+                  );
                 }),
               );
             },

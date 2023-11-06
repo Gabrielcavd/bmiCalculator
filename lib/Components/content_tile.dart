@@ -5,10 +5,9 @@ Function checkSafety = () {
 };
 
 class contentTile extends StatelessWidget {
-  const contentTile(this.widgetColor,
-      {super.key, this.widgetChild, this.onPress});
+  contentTile(this.widgetColor, {super.key, this.widgetChild, this.onPress});
   final Color widgetColor;
-  final Widget? widgetChild;
+  Widget? widgetChild;
   final Function? onPress;
 
   @override
